@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 Sticky Notes App
 
-## Getting Started
+A simple, interactive sticky notes application built with **Next.js App Router**, **TailwindCSS**, and **@dnd-kit** for drag-and-drop functionality. Notes are editable, draggable, and persist across sessions via `localStorage`.
 
-First, run the development server:
+---
+
+## 🚀 Features
+
+- ➕ Add new sticky notes
+- 📝 Inline text editing
+- 🟨 Realistic sticky-note UI with Tailwind
+- 🖱️ Drag and drop notes anywhere
+- 🔝 Automatically stack dragged or clicked notes to the top
+- ❌ Delete notes easily
+- 💾 Notes saved in `localStorage` (no backend needed)
+
+---
+
+## 🛠️ Tech Stack
+
+- [Next.js 14 (App Router)](https://nextjs.org/docs/app)
+- [React](https://reactjs.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [@dnd-kit/core](https://docs.dndkit.com/) – modern drag-and-drop
+- TypeScript
+
+---
+
+## 📦 Installation
 
 ```bash
+git clone https://github.com/haohxu/nextjs-sticky-notes-app.git
+cd sticky-notes-app
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📁 Project Structure
 
-## Learn More
+```
+src/
+├── app/
+│   ├── page.tsx          # Main app page (Client Component)
+│   ├── layout.tsx        # App layout
+│   └── globals.css       # Tailwind styles
+├── components/
+│   └── Note.tsx          # Draggable, editable note component
+├── hooks/
+│   └── useLocalStorage.ts # Hook to sync state with localStorage
+├── types/
+│   └── index.ts          # Type definitions
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ✨ Future Ideas
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Add note colors or categories
+- Add animations for adding/removing notes
+- Implement resizable notes
+- Make it a Progressive Web App (PWA) for offline use
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
