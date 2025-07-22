@@ -40,28 +40,41 @@ export default function NoteComponent({
   return (
     <div
       ref={setNodeRef}
-      {...listeners}
-      {...attributes}
-      onMouseDown={onClick}
       className="absolute w-48"
       style={style}
+      onMouseDown={onClick} // bring to front on any interaction
     >
-      <div className="relative">
-        <textarea
-          ref={textareaRef}
-          className="w-full h-32 p-3 bg-yellow-200 text-black rounded shadow resize-none focus:outline-none"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          onBlur={handleBlur}
-          placeholder="Type here..."
-        />
-        <button
-          onClick={() => onDelete(note.id)}
-          className="absolute top-1 right-2 text-red-600 hover:text-red-800 text-lg font-bold"
-        >
-          ×
-        </button>
+      {/* Drag handle area */}
+      <div
+        className="bg-yellow-300 px-2 py-1 rounded-t cursor-move text-sm font-bold text-gray-700"
+        {...listeners}
+        {...attributes}
+      >
+        .
       </div>
+
+      {/* Delete button outside drag handle */}
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log("Deleting note:", note.id);
+          onDelete(note.id);
+        }}
+        className="absolute top-1 right-1 text-red-600 hover:text-red-800 text-base font-bold bg-transparent rounded-full w-5 h-5 flex items-center justify-center leading-none cursor-pointer"
+      >
+        ×
+      </button>
+
+      {/* Editable note body */}
+      <textarea
+        ref={textareaRef}
+        className="w-full h-32 p-3 bg-yellow-200 text-black rounded-b shadow resize-none focus:outline-none"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        onBlur={handleBlur}
+        placeholder="Type here..."
+      />
     </div>
   );
 }
