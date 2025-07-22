@@ -3,4 +3,5 @@ export type Note = {
   text: string;
   x: number;
   y: number;
+  zIndex: number;
 };

@@ -8,10 +8,12 @@ export default function NoteComponent({
   note,
   onChange,
   onDelete,
+  onClick,
 }: {
   note: Note;
   onChange: (id: string, text: string) => void;
   onDelete: (id: string) => void;
+  onClick: () => void;
 }) {
   const [text, setText] = useState(note.text);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -32,6 +34,7 @@ export default function NoteComponent({
     transform: transform
       ? `translate3d(${note.x + transform.x}px, ${note.y + transform.y}px, 0)`
       : `translate3d(${note.x}px, ${note.y}px, 0)`,
+    zIndex: note.zIndex || 1,
   };
 
   return (
@@ -39,13 +42,14 @@ export default function NoteComponent({
       ref={setNodeRef}
       {...listeners}
       {...attributes}
+      onMouseDown={onClick}
       className="absolute w-48"
       style={style}
     >
       <div className="relative">
         <textarea
           ref={textareaRef}
-          className="w-full h-32 p-3 bg-yellow-200 rounded shadow resize-none focus:outline-none"
+          className="w-full h-32 p-3 bg-yellow-200 text-black rounded shadow resize-none focus:outline-none"
           value={text}
           onChange={(e) => setText(e.target.value)}
           onBlur={handleBlur}
