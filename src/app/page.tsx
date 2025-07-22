@@ -51,6 +51,11 @@ export default function Home() {
     setNotes(notes.filter((note) => note.id !== id));
   };
 
+  const deleteAllNotes = () => {
+    setNotes([]);
+    setMaxZ(1);
+  };
+
   const handleDragEnd = (event: DragEndEvent) => {
     const { delta, active } = event;
     setNotes((prev) =>
@@ -80,15 +85,24 @@ export default function Home() {
     <main className="p-4 min-h-screen">
       <h1 className="text-3xl font-bold mb-4">Sticky Notes</h1>
 
-      <button
-        onClick={addNote}
-        className="bg-yellow-400 hover:bg-yellow-300 text-black px-4 py-2 rounded shadow mb-4"
-      >
-        + Add Note
-      </button>
+      <div className="flex space-x-2">
+        <button
+          onClick={addNote}
+          className="bg-yellow-400 hover:bg-yellow-300 text-black px-4 py-2 rounded shadow mb-4"
+        >
+          + Add Note
+        </button>
+
+        <button
+          onClick={deleteAllNotes}
+          className="bg-rose-400 hover:bg-rose-300 text-black px-4 py-2 rounded shadow mb-4"
+        >
+          Clear All Notes
+        </button>
+      </div>
 
       <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
-        <div className="relative w-full h-[80vh] rounded  overflow-hidden">
+        <div className="relative w-full h-[80vh] rounded border overflow-hidden">
           {notes.map((note) => (
             <NoteComponent
               key={note.id}
